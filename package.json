@@ -31,12 +31,12 @@
   "gypfile": true,
   "license": "mit",
   "dependencies": {
-    "node-pre-gyp": "^0.6.30"
+    "node-pre-gyp": "^0.6.39"
   },
   "devDependencies": {
     "@types/node": "^6.0.38",
     "aws-sdk": "2.x",
-    "nan": "^2.4.0",
+    "nan": "^2.14.0",
     "typescript": "^2.0.2"
   },
   "bugs": {

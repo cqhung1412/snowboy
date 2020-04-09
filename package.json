@@ -12,7 +12,7 @@
     "host": "https://snowboy-release-node.s3-us-west-2.amazonaws.com"
   },
   "scripts": {
-    "install": "node-pre-gyp install --fallback-to-build",
+    "install": "node-pre-gyp clean configure build && node-pre-gyp install --build-from-source && ./node_modules/.bin/electron-rebuild",
     "test": "node index.js",
     "prepublish": "tsc --listFiles"
   },

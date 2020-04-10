@@ -19,7 +19,6 @@
     "KITT.AI <snowboy@kitt.ai>",
     "bugsounet <github@bugsnana.fr>"
   ],
-  "gypfile": true,
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/bugsounet/snowboy/issues"

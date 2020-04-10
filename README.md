@@ -9,3 +9,14 @@ I will **ONLY** maintened JS code for node use for continue to use snowboy as de
 
 I will start this new versioning at v1.4.0 (same as v1.3.1 in Kitt-AI repository)
 
+## Update
+ * **v1.4.1** (20/04/10)
+   * Cleaning: now *ONLY* for Node version
+   * update library database
+   * compilation error solved
+   * npm install complete without error
+   * added `Alexa` keyword in database
+
+
+Complete README and example will be comming soon...
+

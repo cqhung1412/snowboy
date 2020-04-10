@@ -2,7 +2,7 @@
     'targets': [{
         'target_name': 'snowboy',
         'sources': [
-            'swig/Node/snowboy.cc'
+            'lib/snowboy.cc'
         ],
         'conditions': [
             ['OS=="mac"', {
@@ -18,7 +18,7 @@
                         '-Wl,--no-as-needed',
                     ],
                     'libraries': [
-                        '<(module_root_dir)/lib/ubuntu64/libsnowboy-detect.a',
+                        '<(module_root_dir)/lib/x64/libsnowboy-detect.a',
                     ]
                 }
             }],
@@ -38,7 +38,7 @@
                         '-Wl,--no-as-needed',
                     ],
                     'libraries': [
-                        '<(module_root_dir)/lib/aarch64-ubuntu1604/libsnowboy-detect.a',
+                        '<(module_root_dir)/lib/arm64/libsnowboy-detect.a',
                     ]
                 }
             }]

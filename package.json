@@ -1,6 +1,6 @@
 {
   "name": "snowboy",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Snowboy is a customizable hotword detection engine",
   "main": "lib/node/index.js",
   "typings": "lib/node/index.d.ts",
@@ -9,37 +9,31 @@
     "module_path": "./lib/node/binding/{configuration}/{node_abi}-{platform}-{arch}/",
     "remote_path": "./{module_name}/v{version}/{configuration}/",
     "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}.tar.gz",
-    "host": "https://snowboy-release-node.s3-us-west-2.amazonaws.com"
+    "host": "https://github.com/bugusounet/snowboy"
   },
   "scripts": {
-    "install": "node-pre-gyp install --fallback-to-build",
-    "test": "node index.js",
-    "prepublish": "tsc --listFiles"
+    "install": "scripts/installer.sh",
+    "postinstall": "tsc -p tsconfig.json"
   },
   "author": [
     "KITT.AI <snowboy@kitt.ai>",
     "bugsounet <github@bugsnana.fr>"
   ],
-  "contributors": [
-    "Leandre Gohy <leandre.gohy@hexeo.be>",
-    "Evan Cohen <evanbtcohen@gmail.com>"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bugsounet/snowboy.git"
-  },
-  "gypfile": true,
-  "license": "mit",
-  "dependencies": {
-    "node-pre-gyp": "^0.6.30"
-  },
-  "devDependencies": {
-    "@types/node": "^6.0.38",
-    "aws-sdk": "2.x",
-    "nan": "^2.4.0",
-    "typescript": "^2.0.2"
-  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/bugsounet/snowboy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bugsounet/snowboy"
+  },
+  "dependencies": {
+    "electron-rebuild": "^1.10.1",
+    "node-pre-gyp": "^0.6.39"
+  },
+  "devDependencies": {
+    "@types/node": "^6.14.9",
+    "nan": "^2.14.0",
+    "typescript": "^2.9.2"
   }
 }

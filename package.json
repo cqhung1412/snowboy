@@ -9,37 +9,32 @@
     "module_path": "./lib/node/binding/{configuration}/{node_abi}-{platform}-{arch}/",
     "remote_path": "./{module_name}/v{version}/{configuration}/",
     "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}.tar.gz",
-    "host": "https://snowboy-release-node.s3-us-west-2.amazonaws.com"
+    "host": "https://github.com/bugusounet/snowboy"
   },
   "scripts": {
-    "install": "node-pre-gyp clean configure build && node-pre-gyp install --build-from-source && ./node_modules/.bin/electron-rebuild",
-    "test": "node index.js",
-    "prepublish": "tsc --listFiles"
+    "install": "scripts/installer.sh",
+    "postinstall": "tsc -p tsconfig.json"
   },
   "author": [
     "KITT.AI <snowboy@kitt.ai>",
     "bugsounet <github@bugsnana.fr>"
   ],
-  "contributors": [
-    "Leandre Gohy <leandre.gohy@hexeo.be>",
-    "Evan Cohen <evanbtcohen@gmail.com>"
-  ],
+  "gypfile": true,
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bugsounet/snowboy/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bugsounet/snowboy.git"
+    "url": "https://github.com/bugsounet/snowboy"
   },
-  "gypfile": true,
-  "license": "mit",
   "dependencies": {
     "electron-rebuild": "^1.10.1",
     "node-pre-gyp": "^0.6.39"
   },
   "devDependencies": {
-    "@types/node": "^6.0.38",
+    "@types/node": "^6.14.9",
     "nan": "^2.14.0",
-    "typescript": "^2.0.2"
-  },
-  "bugs": {
-    "url": "https://github.com/bugsounet/snowboy/issues"
+    "typescript": "^2.9.2"
   }
 }

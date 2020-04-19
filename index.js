@@ -3,9 +3,9 @@
 /** 2020-04-19      **/
 
 const path = require("path")
-const Detector = require("../lib/node/index.js").Detector
-const Models = require("../lib/node/index.js").Models
-const Recorder = require("../resources/lpcm16.js")
+const Detector = require("./lib/node/index.js").Detector
+const Models = require("./lib/node/index.js").Models
+const Recorder = require("./resources/lpcm16.js")
 
 var snowboyDict = {
   "smart_mirror": {
@@ -99,7 +99,7 @@ class SNOWBOY {
   }
 
   init () {
-    var modelPath = path.resolve(__dirname, "./models")
+    var modelPath = path.resolve(__dirname, "./resources/models")
     this.models = new Models();
     log("Checking models")
 
@@ -128,12 +128,12 @@ class SNOWBOY {
       this.model[0].file = path.resolve(modelPath, this.config.Model + ".umdl")
       this.models.add(this.model[0])
     })
-    log("snowboy v" + require('../package.json').version + " Initialized...")
+    log("snowboy v" + require('./package.json').version + " Initialized...")
   }
 
   start () {
     this.detector = new Detector({
-      resource: path.resolve(__dirname, "./common.res"),
+      resource: path.resolve(__dirname, "./resources/common.res"),
       models: this.models,
       audioGain: this.config.audioGain,
       applyFrontend: this.config.Frontend
@@ -164,7 +164,7 @@ class SNOWBOY {
     if (err || (code == "1")) {
      if (err) console.log("[SNOWBOY][ERROR] " + err)
      this.stop()
-     console.log("Retry restarting...")
+     console.log("[SNOWBOY] Retry restarting...")
      setTimeout(() => { this.start() },2000)
      return
     }

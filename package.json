@@ -2,7 +2,7 @@
   "name": "snowboy",
   "version": "1.4.2",
   "description": "Snowboy is a customizable hotword detection engine",
-  "main": "lib/node/index.js",
+  "main": "index.js",
   "typings": "lib/node/index.d.ts",
   "binary": {
     "module_name": "snowboy",

@@ -1,6 +1,6 @@
 {
   "name": "snowboy",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Snowboy is a customizable hotword detection engine",
   "main": "lib/node/index.js",
   "typings": "lib/node/index.d.ts",
@@ -13,7 +13,8 @@
   },
   "scripts": {
     "install": "scripts/installer.sh",
-    "postinstall": "tsc -p tsconfig.json"
+    "postinstall": "tsc -p tsconfig.json",
+    "rebuild": "./node_modules/.bin/electron-rebuild"
   },
   "author": [
     "KITT.AI <snowboy@kitt.ai>",
@@ -29,7 +30,9 @@
   },
   "dependencies": {
     "electron-rebuild": "^1.10.1",
-    "node-pre-gyp": "^0.6.39"
+    "node-pre-gyp": "^0.6.39",
+    "path": "^0.12.7",
+    "child_process": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^6.14.9",

@@ -9,7 +9,7 @@ var config = {
     audioGain: 2.0,
     applyFrontend: false,
     applyModel: "jarvis",
-    applySensitivity: 1.0
+    applySensitivity: null
   },
   micConfig: {
     recorder: "arecord",

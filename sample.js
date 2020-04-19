@@ -7,9 +7,9 @@ var config = {
   debug: true,
   snowboy: {
     audioGain: 2.0,
-    applyFrontend: false,
-    applyModel: "jarvis",
-    applySensitivity: null
+    Frontend: false,
+    Model: "smart_mirror",
+    Sensitivity: null
   },
   micConfig: {
     recorder: "arecord",
@@ -19,7 +19,8 @@ var config = {
 
 this.snowboy = new Snowboy(config.snowboy, config.micConfig, (detected) => { detect(detected) }, config.debug )
 this.snowboy.init()
+this.snowboy.start()
 
 function detect(detected) {
-  console.log("Make this script if " + detected + " detected")
+  console.log("Make your proper script if " + detected + " detected")
 }

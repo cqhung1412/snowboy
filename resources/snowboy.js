@@ -1,5 +1,6 @@
 /** Snowboy library **/
-/** bugsounet **/
+/** bugsounet       **/
+/** 2020-04-19      **/
 
 const path = require("path")
 const Detector = require("../lib/node/index.js").Detector
@@ -46,6 +47,11 @@ var snowboyDict = {
     hotwords: "view_glass",
     file: "view_glass.umdl",
     sensitivity: "0.7",
+  },
+  "alexa": {
+    hotwords: "alexa",
+    file: "alexa.umdl",
+    sensitivity: "0.6"
   }
 }
 
@@ -63,113 +69,120 @@ class SNOWBOY {
     this.micConfig = mic
     this.config = config
     this.callback = callback
+    this.model = []
     this.models = []
     this.mic = null
     this.detector = null
     if (debug == true) log = _log
     this.debug = debug
-    this.default = {
+
+    this.defaultConfig = {
       audioGain: 2.0,
-      applyFrontend: false,
-      applyModel: "smart_mirror",
-      applySensitivity: null,
-      models: []
+      Frontend: true,
+      Model: "jarvis",
+      Sensitivity: null
     }
-    this.config = Object.assign(this.default, this.config)
-  }
-  init () {
-    var models = new Models();
-    var modelPath = path.resolve(__dirname, "./models")
+    this.config = Object.assign(this.defaultConfig, this.config)
 
-    if (this.config.models.length == 0) {
-      log("Checking models")
-      if (this.config.applyModel) {
-        for (let [item, value] of Object.entries(snowboyDict)) {
-          if (this.config.applyModel == item) {
-            log("Model selected:", item)
-            if (this.config.applySensitivity) {
-               if ((isNaN(this.config.applySensitivity)) || (Math.ceil(this.config.applySensitivity) > 1)) {
-                 log("Wrong Sensitivity value.")
-               } else {
-                if (item == ("jarvis" || "neo_ya")) {
-                  value.sensitivity = this.config.applySensitivity + "," + this.config.applySensitivity
-                }
-                else value.sensitivity = this.config.applySensitivity
-                log("Sensitivity set:", this.config.applySensitivity)
-              }
-            }
-            this.config.models.push(value)
-          }
-        }
-      }
-    }
-    if (this.config.models.length == 0) return console.log("[SNOWBOY][ERROR] No model to load")
-    this.config.models.forEach((model)=>{
-      model.file = path.resolve(modelPath, model.file)
-      models.add(model)
-    })
-    this.detector = new Detector({
-      resource: path.resolve(__dirname, "./common.res"),
-      models: models,
-      audioGain: this.config.audioGain,
-      applyFrontend: this.config.applyFrontend
-    })
-
-    this.detector
-      .on("error", (err)=>{
-        log("Detector Error:", err)
-        this.stop()
-        return
-      })
-      .on("hotword", (index, hotword, buffer)=>{
-        log("Detected:", hotword)
-        this.stop()
-        this.callback(hotword)
-        return
-      })
-    log("snowboy v" + require('../package.json').version + " Initialized...")
-    this.start()
-  }
-
-  start () {
-    if (this.mic) return
-    this.mic = null
-
-    var defaultOption = {
+    this.defaultMicOption = {
+      recorder: "arecord",
+      device: "plughw:1",
       sampleRate: 16000,
       channels: 1,
       threshold: 0.5,
       thresholdStart: null,
       thresholdEnd: null,
       silence: '1.0',
-      verbose: this.debug,
+      verbose: this.debug
+    }
+    this.recorderOptions = Object.assign({}, this.defaultMicOption, this.micConfig)
+  }
+
+  init () {
+    var modelPath = path.resolve(__dirname, "./models")
+    this.models = new Models();
+    log("Checking models")
+
+    if (this.config.Model) {
+      for (let [item, value] of Object.entries(snowboyDict)) {
+        if (this.config.Model == item) {
+          log("Model selected:", item)
+          if (this.config.Sensitivity) {
+             if ((isNaN(this.config.Sensitivity)) || (Math.ceil(this.config.Sensitivity) > 1)) {
+               log("Wrong Sensitivity value.")
+             } else {
+              if (item == ("jarvis" || "neo_ya")) {
+                value.sensitivity = this.config.Sensitivity + "," + this.config.Sensitivity
+              }
+              else value.sensitivity = this.config.Sensitivity
+            }
+          }
+          log("Sensitivity set:", value.sensitivity)
+          this.model.push(value)
+        }
+      }
     }
 
-    var Options = Object.assign({}, defaultOption, this.micConfig)
-    this.mic = new Recorder(Options, this.detector, (err,code)=>{this.callbackErr(err,code)})
-    log("Starts listening.")
-    this.mic.start()
+    if (this.model.length == 0) return console.log("[SNOWBOY][ERROR] model not found:", this.config.Model)
+    this.model.forEach((model)=>{
+      this.model[0].file = path.resolve(modelPath, this.config.Model + ".umdl")
+      this.models.add(this.model[0])
+    })
+    log("snowboy v" + require('../package.json').version + " Initialized...")
+  }
+
+  start () {
+    this.detector = new Detector({
+      resource: path.resolve(__dirname, "./common.res"),
+      models: this.models,
+      audioGain: this.config.audioGain,
+      applyFrontend: this.config.Frontend
+    })
+
+    this.detector
+      .on("error", (err)=>{
+        this.error(err)
+        return
+      })
+      .on("hotword", (index, hotword, buffer)=>{
+        log("Detected:", hotword)
+        this.stopListening()
+        this.callback(hotword)
+        return
+      })
+
+    this.startListening()
   }
 
   stop () {
-    if (!this.mic) return
-    this.mic.stop()
-    this.mic = null
-    log("Stops listening.")
+    this.stopListening()
   }
 
-  callbackErr (err,code) {
-    if (err) {
-     console.log("[SNOWBOY][ERROR] " + err)
+/** secondary code **/
+
+  error (err,code) {
+    if (err || (code == "1")) {
+     if (err) console.log("[SNOWBOY][ERROR] " + err)
      this.stop()
      console.log("Retry restarting...")
      setTimeout(() => { this.start() },2000)
      return
     }
-    if (code == "1") {
-      this.stop()
-      setTimeout(() => { this.start() },2000)
-    }
+  }
+
+  startListening () {
+    if (this.mic) return
+    this.mic = null
+    this.mic = new Recorder(this.recorderOptions, this.detector, (err,code)=>{this.error(err,code)})
+    log("Starts listening.")
+    this.mic.start()
+  }
+
+  stopListening () {
+    if (!this.mic) return
+    this.mic.stop()
+    this.mic = null
+    log("Stops listening.")
   }
 }
 

@@ -10,7 +10,7 @@ I will **ONLY** maintened JS code for node use for continue to use snowboy as de
 I will start this new versioning at v1.4.0 (same as v1.3.1 in Kitt-AI repository)
 
 ## Update
- * **v1.4.3** (10/04/21)
+ * **v1.4.3** (20/04/21)
    * prepare npm library
    * create new Snowboy library
    * create sample

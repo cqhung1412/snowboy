@@ -64,7 +64,7 @@ var log = function() {
   //do nothing
 }
 
-class SNOWBOY {
+class Snowboy {
   constructor(config, mic, callback = ()=>{}, debug) {
     this.micConfig = mic
     this.config = config
@@ -186,4 +186,5 @@ class SNOWBOY {
   }
 }
 
-module.exports = SNOWBOY
+module.exports = require('./lib/node/index.js')
+module.exports.Snowboy = Snowboy

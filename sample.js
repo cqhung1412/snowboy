@@ -1,7 +1,10 @@
 /** sample code for using snowboy library **/
 /** @bugsounet **/
 
-const Snowboy = require("./index.js")
+const Snowboy = require("./index.js").Snowboy
+
+// with npm library:
+// const Snowboy = require("@bugsounet/snowboy").Snowboy
 
 var config = {
   debug: true,

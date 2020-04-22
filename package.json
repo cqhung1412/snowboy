@@ -1,6 +1,6 @@
 {
   "name": "@bugsounet/snowboy",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Snowboy is a customizable hotword detection engine",
   "main": "index.js",
   "typings": "lib/node/index.d.ts",
@@ -15,6 +15,13 @@
     "install": "bash scripts/installer.sh",
     "postinstall": "tsc -p tsconfig.json"
   },
+  "keywords": [
+    "snowboy",
+    "detector",
+    "jarvis",
+    "alexa",
+    "smart_mirror"
+  ],
   "author": [
     "KITT.AI <snowboy@kitt.ai>",
     "bugsounet <bugsounet@bugsnana.fr>"

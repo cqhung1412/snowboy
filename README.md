@@ -10,21 +10,26 @@ I have decoded other version of snowboy
 I will start this new versioning at v1.4.0 (same as v1.3.1 in Kitt-AI repository)
 
 ## Update
+
  * **v1.4.4** (20/04/22)
    * writing help and sample
+   
  * **v1.4.3** (20/04/21)
    * prepare npm library
    * create new Snowboy library
    * create sample
    * update package.json
+   
  * **v1.4.2** (20/04/19)
    * internal test for npm install
+   
  * **v1.4.1** (20/04/10)
    * Cleaning: now *ONLY* for Node version
    * update library database
    * compilation error solved
    * npm install complete without error
    * added `Alexa` keyword in database
+   
  * **V1.4.0**
    * initial version of Kitt-AI@snowboy
 

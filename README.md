@@ -11,6 +11,9 @@ I will start this new versioning at v1.4.0 (same as v1.3.1 in Kitt-AI repository
 
 ## Update
 
+ * **v1.4.5** (20/05/02)
+   * add log on start
+
  * **v1.4.4** (20/04/22)
    * writing help and sample
    

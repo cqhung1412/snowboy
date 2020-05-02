@@ -106,7 +106,7 @@ class Snowboy {
     if (this.config.Model) {
       for (let [item, value] of Object.entries(snowboyDict)) {
         if (this.config.Model == item) {
-          log("Model selected:", item)
+          console.log("[SNOWBOY] Model selected:", item)
           if (this.config.Sensitivity) {
              if ((isNaN(this.config.Sensitivity)) || (Math.ceil(this.config.Sensitivity) > 1)) {
                log("Wrong Sensitivity value.")
@@ -128,7 +128,7 @@ class Snowboy {
       this.model[0].file = path.resolve(modelPath, this.config.Model + ".umdl")
       this.models.add(this.model[0])
     })
-    log("snowboy v" + require('./package.json').version + " Initialized...")
+    console.log("[SNOWBOY] snowboy v" + require('./package.json').version + " Initialized...")
   }
 
   start () {

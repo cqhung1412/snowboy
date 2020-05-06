@@ -1,6 +1,6 @@
 {
   "name": "@bugsounet/snowboy",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "description": "Snowboy is a customizable hotword detection engine",
   "main": "index.js",
   "typings": "lib/node/index.d.ts",
@@ -36,12 +36,13 @@
   },
   "gypfile": true,
   "dependencies": {
+    "@bugsounet/lpcm16": "^1.0.1",
+    "@types/node": "^6.14.9",
+    "child_process": "^1.0.2",
     "electron-rebuild": "^1.10.1",
     "nan": "^2.14.0",
     "node-pre-gyp": "^0.14.0",
     "path": "^0.12.7",
-    "child_process": "^1.0.2",
-    "@types/node": "^6.14.9",
     "typescript": "^2.9.2"
   }
 }

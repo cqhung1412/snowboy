@@ -5,7 +5,7 @@
 const path = require("path")
 const Detector = require("./lib/node/index.js").Detector
 const Models = require("./lib/node/index.js").Models
-const Recorder = require("./resources/lpcm16.js")
+const Recorder = require("@bugsounet/lpcm16")
 
 var snowboyDict = {
   "smart_mirror": {
@@ -93,7 +93,9 @@ class Snowboy {
       thresholdStart: null,
       thresholdEnd: null,
       silence: '1.0',
-      verbose: this.debug
+      verbose: false,
+      debug: this.debug
+
     }
     this.recorderOptions = Object.assign({}, this.defaultMicOption, this.micConfig)
   }

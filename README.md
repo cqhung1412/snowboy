@@ -11,6 +11,10 @@ I will start this new versioning at v1.4.0 (same as v1.3.1 in Kitt-AI repository
 
 ## Update
 
+ * **v1.4.6-v1.4.7** (20/05/06)
+   * installer review
+   * use @bugousnet/lpcm16 library
+
  * **v1.4.5** (20/05/02)
    * add log on start
 

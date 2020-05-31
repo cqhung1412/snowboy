@@ -5,7 +5,7 @@
 const path = require("path")
 const Detector = require("./lib/node/index.js").Detector
 const Models = require("./lib/node/index.js").Models
-const Recorder = require("@bugsounet/lpcm16")
+const Recorder = require("@bugsounet/node-lpcm16")
 
 var snowboyDict = {
   "smart_mirror": {

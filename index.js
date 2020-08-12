@@ -1,6 +1,6 @@
 /** Snowboy library **/
-/** bugsounet       **/
-/** 2020-04-19      **/
+/** @bugsounet       **/
+/** 2020-08-12      **/
 
 const path = require("path")
 const Detector = require("./lib/node/index.js").Detector
@@ -169,6 +169,12 @@ class Snowboy {
      console.log("[SNOWBOY] Retry restarting...")
      setTimeout(() => { this.start() },2000)
      return
+    }
+    if (code == "255") {
+      this.stop()
+      console.log("[SNOWBOY] Timeout waiting restarting !")
+      setTimeout(() => { this.start() }, 1000)
+      return
     }
   }
 

@@ -10,7 +10,10 @@ I have decoded other version of snowboy
 I will start this new versioning at v1.4.0 (same as v1.3.1 in Kitt-AI repository)
 
 ## Update
- * **V1.5.0** (20/05/31)
+ * **v1.5.1** (20/08/12)
+   * prevent too much listening time (restarting automaticaly)
+
+ * **v1.5.0** (20/05/31)
    * Update library
 
  * **v1.4.6-v1.4.7** (20/05/06)

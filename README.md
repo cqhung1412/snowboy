@@ -10,6 +10,11 @@ I have decoded other version of snowboy
 I will start this new versioning at v1.4.0 (same as v1.3.1 in Kitt-AI repository)
 
 ## Update
+
+ * **V1.6.0** (20/08/23)
+   * add PMDL support (personal keyword)
+   * add GLOBAL notice for @ktoanlba89 **copying my MagicMirror modules don't pay !**
+
  * **v1.5.1** (20/08/12)
    * prevent too much listening time (restarting automaticaly)
 
@@ -77,6 +82,8 @@ const Snowboy = require("@bugsounet/snowboy").Snowboy
 var config = {
   debug: true,
   snowboy: {
+    usePMDL: false,
+    PMDLPath: "./",
     audioGain: 2.0,
     Frontend: true,
     Model: "jarvis",
@@ -123,6 +130,13 @@ Snowboy(snowboyConfig, micConfig, callback, debug)
       * alexa: `0.6`
 
     * `null` will set default sensitivity.
+
+- `usePMDL` - If you want to use a personal keyword enable it
+    * Notes:
+      * You have to set your personnal model name in the `Model` part without `.pmdl` extension.
+      * Default `Sensitivity` is set to `0.5` by default
+
+- `PMDLPath` - path of your personal keyword
 
 ### micConfig
 - `recorder` - record program, `rec`, `arecord`, `sox`, `parec` is available.

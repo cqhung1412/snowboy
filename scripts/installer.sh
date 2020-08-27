@@ -10,10 +10,17 @@ Installer_yesno () {
   done
 }
 
+prompt=true
+if [ -e ../../../no-prompt ]; then
+  prompt=false
+fi
+
 node-pre-gyp clean configure install --build-from-source 2>/dev/null
 
 echo
 
-Installer_yesno
-
-
+if $prompt; then
+  Installer_yesno
+else
+  electron-rebuild
+fi

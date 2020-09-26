@@ -11,7 +11,10 @@ I will start this new versioning at v1.4.0 (same as v1.3.1 in Kitt-AI repository
 
 ## Update
 
- * **V1.6.0** (20/08/23)
+ * **v1.6.3** (20/09/26)
+   * remove Global notice
+
+ * **v1.6.0 -> 1.6.2** (20/08/23)
    * add PMDL support (personal keyword)
    * add GLOBAL notice for @ktoanlba89 **copying my MagicMirror modules don't pay !**
 

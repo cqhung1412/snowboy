@@ -11,6 +11,10 @@ I will start this new versioning at v1.4.0 (same as v1.3.1 in Kitt-AI repository
 
 ## Update
 
+ * **v2.0.0** (20/01/17)
+   * add multi-keyword search (V2)
+   * @todo: making new sample for v2
+
  * **v1.6.3** (20/09/26)
    * remove Global notice
 

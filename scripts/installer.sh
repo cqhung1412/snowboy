@@ -10,7 +10,6 @@ if [ $0 != 'bash' -a "$1." != "." ]; then
         # get the parm
         p0=$1
 fi
-echo $p0
 
 if [ $p0 = without-rebuild ]; then
   rebuild=false

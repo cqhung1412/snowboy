@@ -8,6 +8,7 @@ const fs = require("fs")
 const Detector = require("./lib/node/index.js").Detector
 const Models = require("./lib/node/index.js").Models
 const Recorder = require("@bugsounet/node-lpcm16")
+const { getPlatform } = require("./platform.js")
 
 var snowboyDict = {
   "smart_mirror": {
@@ -216,6 +217,11 @@ class Snowboy {
 
 class SnowboyV2 {
   constructor(config, mic, callback = ()=>{}, debug) {
+    const PLATFORM_RECORDER_MAP = new Map()
+    PLATFORM_RECORDER_MAP.set("linux", "arecord")
+    PLATFORM_RECORDER_MAP.set("mac", "sox")
+    PLATFORM_RECORDER_MAP.set("raspberry-pi", "arecord")
+    PLATFORM_RECORDER_MAP.set("windows", "sox")
     this.micConfig = mic
     this.config = config
     this.callback = callback
@@ -223,8 +229,8 @@ class SnowboyV2 {
     this.models = []
     this.mic = null
     this.detector = null
-    if (!this.debug) log = function() { /* do nothing */ }
     this.debug = debug
+    if (!this.debug) log = function() { /* do nothing */ }
     this.defaultConfig = {
       usePMDL: false,
       PMDLPath: "./",
@@ -245,12 +251,24 @@ class SnowboyV2 {
       verbose: false,
       debug: this.debug
     }
+    let platform
+    try {
+      platform = getPlatform()
+    } catch (error) {
+      console.error("[SNOWBOY] The NodeJS binding does not support this platform. Supported platforms include macOS (x86_64), Windows (x86_64), Linux (x86_64), and Raspberry Pi (1-4)")
+      return console.error(error)
+    }
+    if (this.micConfig.recorder == "auto") {
+      let recorderType = PLATFORM_RECORDER_MAP.get(platform)
+      console.log(`[SNOWBOY] Platform detected: '${platform}' -- attempting to use '${recorderType}' to access microphone...`)
+      this.micConfig.recorder= recorderType
+    }
     this.recorderOptions = Object.assign({}, this.defaultMicOption, this.micConfig)
   }
 
   init () {
     var modelPath = path.resolve(__dirname, "./resources/models")
-    this.models = new Models();
+    this.models = new Models()
     log("Checking models")
     this.config.forEach((config,nb) => {
       config = Object.assign(this.defaultConfig, config)
@@ -369,7 +387,6 @@ class SnowboyV2 {
     this.mic = null
     log("Stops listening.")
   }
-
 }
 
 module.exports = require('./lib/node/index.js')

@@ -8,7 +8,6 @@ const fs = require("fs")
 const Detector = require("./lib/node/index.js").Detector
 const Models = require("./lib/node/index.js").Models
 const Recorder = require("@bugsounet/node-lpcm16")
-const { getPlatform } = require("./platform.js")
 
 var snowboyDict = {
   "smart_mirror": {
@@ -217,11 +216,6 @@ class Snowboy {
 
 class SnowboyV2 {
   constructor(config, mic, callback = ()=>{}, debug) {
-    const PLATFORM_RECORDER_MAP = new Map()
-    PLATFORM_RECORDER_MAP.set("linux", "arecord")
-    PLATFORM_RECORDER_MAP.set("mac", "sox")
-    PLATFORM_RECORDER_MAP.set("raspberry-pi", "arecord")
-    PLATFORM_RECORDER_MAP.set("windows", "sox")
     this.micConfig = mic
     this.config = config
     this.callback = callback
@@ -250,18 +244,6 @@ class SnowboyV2 {
       silence: '1.0',
       verbose: false,
       debug: this.debug
-    }
-    let platform
-    try {
-      platform = getPlatform()
-    } catch (error) {
-      console.error("[SNOWBOY] The NodeJS binding does not support this platform. Supported platforms include macOS (x86_64), Windows (x86_64), Linux (x86_64), and Raspberry Pi (1-4)")
-      return console.error(error)
-    }
-    if (this.micConfig.recorder == "auto") {
-      let recorderType = PLATFORM_RECORDER_MAP.get(platform)
-      console.log(`[SNOWBOY] Platform detected: '${platform}' -- attempting to use '${recorderType}' to access microphone...`)
-      this.micConfig.recorder= recorderType
     }
     this.recorderOptions = Object.assign({}, this.defaultMicOption, this.micConfig)
   }
@@ -321,6 +303,7 @@ class SnowboyV2 {
         this.models.add(this.model[nb])
       }
     })
+    if (!this.model.length) console.error("[SNOWBOY] No models found!")
   }
 
   start () {
@@ -354,6 +337,15 @@ class SnowboyV2 {
   modelsNumber() {
     return this.model.length
   }
+
+  modelsNames() {
+    let keywordsName= []
+    this.model.forEach( value => {
+      keywordsName.push(value.hotwords[0])
+    })
+    return keywordsName.toString()
+  }
+    
 
 /** secondary code @todo not yet implented in v2**/
 

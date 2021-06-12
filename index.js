@@ -8,6 +8,7 @@ const fs = require("fs")
 const Detector = require("./lib/node/index.js").Detector
 const Models = require("./lib/node/index.js").Models
 const Recorder = require("@bugsounet/node-lpcm16")
+//const { getPlatform } = require("./platform.js")
 
 var snowboyDict = {
   "smart_mirror": {

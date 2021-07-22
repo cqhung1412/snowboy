@@ -1,5 +1,7 @@
 /** sample code for using snowboy library **/
 /** @bugsounet **/
+/** Warning : This sample is not up to date ! **/
+/** I will update it in next Release **/
 
 const Snowboy = require("./index.js").Snowboy
 

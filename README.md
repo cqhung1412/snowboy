@@ -11,6 +11,10 @@ I will start this new versioning at v1.4.0 (same as v1.3.1 in Kitt-AI repository
 
 ## Update
 
+ * **V2.2.0** (21/10/02)
+   * update all package dependencies
+   * correct warning with snowboy.cc
+
  * **v2.0.0** (20/01/17)
    * add multi-keyword search (V2)
    * @todo: making new sample for v2

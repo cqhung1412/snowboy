@@ -1,6 +1,6 @@
 {
   "name": "@bugsounet/snowboy",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Snowboy is a customizable hotword detection engine",
   "main": "index.js",
   "typings": "lib/node/index.d.ts",
@@ -40,7 +40,7 @@
     "@mapbox/node-pre-gyp": "^1.0.5",
     "@types/node": "^16.10.2",
     "child_process": "^1.0.2",
-    "electron-rebuild": "^3.2.3",
+    "electron-rebuild": "2.1.1",
     "nan": "^2.15.0",
     "path": "^0.12.7",
     "typescript": "^4.4.3"

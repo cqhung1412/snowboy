@@ -20,5 +20,5 @@ node-pre-gyp clean configure install --build-from-source 2>/dev/null
 echo
 
 if $rebuild; then
-  electron-rebuild
+  MagicMirror-rebuild
 fi

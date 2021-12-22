@@ -40,7 +40,7 @@
     "@mapbox/node-pre-gyp": "^1.0.5",
     "@types/node": "^16.10.2",
     "child_process": "^1.0.2",
-    "magicmirror-rebuild": "https://github.com/bugsounet/MagicMirror-rebuild",
+    "MagicMirror-rebuild": "https://github.com/bugsounet/MagicMirror-rebuild",
     "nan": "^2.15.0",
     "path": "^0.12.7",
     "typescript": "^4.4.3"

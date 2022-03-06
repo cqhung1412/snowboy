@@ -36,7 +36,7 @@
   },
   "gypfile": true,
   "dependencies": {
-    "@bugsounet/node-lpcm16": "^2.0.1",
+    "@bugsounet/node-lpcm16": "^1.0.2",
     "@mapbox/node-pre-gyp": "^1.0.5",
     "@types/node": "^16.10.2",
     "child_process": "^1.0.2",

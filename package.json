@@ -1,6 +1,6 @@
 {
   "name": "@bugsounet/snowboy",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "Snowboy is a customizable hotword detection engine",
   "main": "index.js",
   "typings": "lib/node/index.d.ts",

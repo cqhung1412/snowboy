@@ -75,13 +75,6 @@ sudo apt install libmagic-dev libatlas-base-dev sox libsox-fmt-all build-essenti
 npm install @bugsounet/snowboy
 ```
 
-In the ending of installation, if you use `electron` you can do electron rebuild step.
-
-```sh
-Do you want to execute electron rebuild ? [Y/n]
-Your choice:
-```
-
 ## Sample with new Snowboy contructor
 
 ```js
@@ -138,7 +131,6 @@ Snowboy(snowboyConfig, micConfig, callback, debug)
       * neo_ya: `0.7`
       * hey_extreme: `0.6`
       * view_glass: `0.7`
-      * alexa: `0.6`
 
     * `null` will set default sensitivity.
 
